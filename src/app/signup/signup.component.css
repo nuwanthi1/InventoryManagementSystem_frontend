@@ -1,0 +1,25 @@
+div{
+    text-align: left;
+}
+label{
+    text-align: left;
+}
+
+.text h2 {
+    color: #29ab87;
+    font-weight: bold;
+    padding-bottom: 20px;
+    line-height: 60px;
+}
+.form-control.ng-touched.ng-invalid{
+    border: 2px solid red;
+}
+.error{
+    color: #f44336;
+}
+.btn {
+    color: #29ab87;
+    background-color: rgba(41, 171, 135, 0.2);
+    font-size: 20px;
+    font-weight: 500;
+}

@@ -1,0 +1,14 @@
+<div class="col-md-3">
+    <div class="side-menu">
+        <button class="navbar-toggler" type="button" (click)="toggleMenu()">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="menu-options collapse" [ngClass]="{ 'show': isMenuOpen}">
+            <a routerLink="">Home</a>
+            <a routerLink="/admin/dashboard">Dashboard</a>
+            <a routerLink="/admin/manage-assets"> Manage Assets</a>
+            <a routerLink="/admin/manage-users"> Manage Users</a>
+            <a routerLink="/admin/admin-profile"> Admin Profile</a>
+        </div>
+    </div>
+</div>

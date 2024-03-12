@@ -1,0 +1,30 @@
+<app-admin-navbar></app-admin-navbar>
+<div class="container" id="profile-container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          Admin Profile
+        </div>
+        <div class="card-body">
+      <div class="text-center mb-4">
+        <label for="photo" class="profile-pic-wrapper">
+          <img src="assets/default-profile-pic.png" alt="Profile Picture" class="profile-pic img-thumbnail">
+          <input type="file" class="form-control-file d-none" id="photo" name="photo" accept="image/*">
+        </label>
+      </div>
+      <form>
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="form-group" id="email-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-save ">Save Profile</button>
+      </form>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
