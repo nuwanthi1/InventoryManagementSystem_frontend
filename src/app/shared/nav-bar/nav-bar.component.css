@@ -1,0 +1,23 @@
+
+
+.custom-navbar {
+    background-color:#0ea77c;
+}
+
+.custom-navbar .nav-link {
+    margin-right: 20px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #ffffff;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.custom-navbar .navbar-brand {
+    color: white; 
+    margin-right: 50px; 
+}
+
+
+

@@ -1,0 +1,16 @@
+.bg-custom-color {
+  background-color: #0ea77c;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure the footer appears above other content */
+}
+
+p {
+  color: white;
+  font-size: 18px;
+  margin: 0; /* Remove default margins */
+  padding: 10px 0; /* Add padding for better spacing */
+}
+

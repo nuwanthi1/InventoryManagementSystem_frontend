@@ -1,0 +1,46 @@
+/* side-menu.component.css */
+.side-menu {
+    position: relative; /* Ensure it's relative to its container */
+    z-index: 1000; /* Adjust the value as needed */
+    
+}
+
+.menu-options {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 150px;
+    height:100%;
+    background-color: #fbf9f9;
+  /*  border: 1px solid #100f0f; */
+   /* border-radius: 5px; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    display: none;
+    z-index: 1000; 
+    
+}
+
+.menu-options.show {
+    display: block;
+
+}
+
+.menu-options a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: white; /* Set the background color to white */
+    transition: background-color 0.3s ease;
+}
+
+.menu-options a:hover {
+    background-color: #f0f0f0;
+
+}
+
+
+
+
+
