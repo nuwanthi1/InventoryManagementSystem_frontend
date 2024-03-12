@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AdminModule } from './admin/admin.module';
+import { UserModule } from './user/user.module';
 
 
 
@@ -35,6 +36,7 @@ import { AdminModule } from './admin/admin.module';
     BrowserAnimationsModule,
     FormsModule,
     AdminModule,
+    UserModule,
    
   ],
   providers: [],
