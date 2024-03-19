@@ -1,10 +1,10 @@
-/* Initial Banner */
+
 
 .container .row .col-md-6 .Button {
     color: #29ab87;
     background-color: rgba(41, 171, 135, 0.2);
     width: 220px;
-    padding: 20px;
+    padding: 20px; 
     text-align: center;
     border-radius: 10px;
 }
@@ -16,11 +16,16 @@
     font-weight: 700;
 }
 
+.banner-text{
+    margin-top:0px;
+}
+
 .banner-text h1 {
     color: #29ab87;
     font-weight: bold;
     padding-bottom: 20px;
     line-height: 60px;
+
 }
 
 .banner-text h5 {

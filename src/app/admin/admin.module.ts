@@ -8,6 +8,8 @@ import { ManageAssetsComponent } from './manage-assets/manage-assets.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { SharedModule } from '../shared/shared.module';
+import { Form, FormsModule } from '@angular/forms';
+//import { AddAssetComponent } from '../dialog/add-asset/add-asset.component';
 
 
 
@@ -17,16 +19,18 @@ import { SharedModule } from '../shared/shared.module';
     DashboardComponent,
     SideMenuComponent,
     AdminNavbarComponent,
-  
     ManageAssetsComponent,
-       ManageUsersComponent,
-       AdminProfileComponent,
+    ManageUsersComponent,
+    AdminProfileComponent,
+    //AddAssetComponent,
+
       
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     SharedModule,
+    FormsModule,
   ]
 })
 export class AdminModule { }

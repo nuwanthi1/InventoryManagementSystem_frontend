@@ -17,9 +17,14 @@ label{
 .error{
     color: #f44336;
 }
+
 .btn {
     color: #29ab87;
     background-color: rgba(41, 171, 135, 0.2);
     font-size: 20px;
     font-weight: 500;
+}
+
+.Lastname-input{
+    margin-top: 10px;
 }

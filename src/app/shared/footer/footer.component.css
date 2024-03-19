@@ -5,12 +5,21 @@
   left: 0;
   width: 100%;
   z-index: 1000; /* Ensure the footer appears above other content */
+  height: 80px;
 }
 
 p {
   color: white;
   font-size: 18px;
   margin: 0; /* Remove default margins */
-  padding: 10px 0; /* Add padding for better spacing */
+  
+
+  
+  /*padding: 10px 0; Add padding for better spacing */
 }
+
+body {
+  padding-bottom: 100px; /* Adjust the value based on the height of your footer */
+}
+
 

@@ -11,21 +11,16 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AdminModule } from './admin/admin.module';
 import { UserModule } from './user/user.module';
+import { DialogModule } from './dialog/dialog.module';
 
 
 
-
- 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
     SignupComponent,
- 
-
-   
-
   ],
   
   imports: [
@@ -37,11 +32,12 @@ import { UserModule } from './user/user.module';
     FormsModule,
     AdminModule,
     UserModule,
+    DialogModule,
    
   ],
   providers: [],
   bootstrap: [AppComponent]
-})
+  })
 export class AppModule {
   
  }
