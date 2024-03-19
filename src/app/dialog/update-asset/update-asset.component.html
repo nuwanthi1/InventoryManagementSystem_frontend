@@ -1,0 +1,26 @@
+<form (ngSubmit)="onSubmit()">
+    <div>
+      <div class="form-group">
+        <label for="assetId">Asset ID:</label>
+        <input type="text" class="form-control" id="assetId" name="assetId" [(ngModel)]="asset.assetId" required>
+      </div>
+      <div class="form-group">
+        <label for="assetName">Asset Name:</label>
+        <input type="text" class="form-control" id="assetName" name="assetName" [(ngModel)]="asset.assetName" required>
+      </div>
+      <div class="form-group">
+          <label for="assetType">Asset Type:</label>
+          <input type="text" class="form-control" id="assetType" name="assetType" [(ngModel)]="asset.assetType" required>
+      </div>
+      <div class="form-group">
+          <label for="assignedTo">Assigned To:</label>
+          <input type="text" class="form-control" id="assignedTo" name="assignedTo" [(ngModel)]="asset.assignedTo" >
+      </div>
+    </div>
+      <div>
+        <button type="submit" class="btn btn-update">Update</button>
+        <button type="submit" class="btn btn-cancel">Cancel</button>
+      </div>
+    </form>
+    
+  
