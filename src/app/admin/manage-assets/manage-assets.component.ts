@@ -11,7 +11,7 @@ import { DeleteAssetService } from 'src/app/services/delete-asset.service';
 export class ManageAssetsComponent {
   constructor(
     private addAssetDialogService: AddAssetDialogService,
-    private deleteAssetService: DeleteAssetService // Inject the service here
+    private deleteAssetService: DeleteAssetService 
   ) { }
 
   openAddAssetDialog() {

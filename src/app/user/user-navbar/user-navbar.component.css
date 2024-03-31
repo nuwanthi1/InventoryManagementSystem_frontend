@@ -1,5 +1,7 @@
 .user-navbar {
     background-color: #0ea77c;
+    display: flex;
+    justify-content: space-between;
   }
   
   .navbar-toggler {
@@ -54,4 +56,16 @@
   }
   
 
-
+  .signout-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    padding: 5px 10px;
+    position: absolute;
+    top: 50%; /* Adjust vertical position */
+    transform: translateY(-50%); /* Center vertically */
+    right: 20px; /* Adjust horizontal position */
+  }
+  

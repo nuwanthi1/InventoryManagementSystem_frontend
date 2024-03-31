@@ -5,12 +5,14 @@
       <div class="col-4">
         <app-side-menu></app-side-menu>
       </div>
-      <div class="col-8 d-flex align-items-center">
+      <div class="col-8 d-flex justify-content-between align-items-center">
         <span class="navbar-brand">Asset Tracker</span>
         <button class="navbar-toggler d-none" type="button" (click)="toggleMenu()">
           <span class="navbar-toggler-icon"></span>
         </button>
+        <button class="signout-button" (click)="signout()">Signout</button>
       </div>
+      
     </div>
   </div>
 </nav>

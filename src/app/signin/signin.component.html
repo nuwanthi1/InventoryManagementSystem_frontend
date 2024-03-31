@@ -13,7 +13,8 @@
                         <p><b>Not a member yet?</b> <a routerLink="/signup">Sign Up</a> </p>
                     </div>
                     <div>
-                        <form #loginForm="ngForm" (ngSubmit)="submit(loginForm.value)" autocomplete="off">
+                        <form #signinForm="ngForm" (ngSubmit)="Submit(signinForm.value)" autocomplete="off">
+
                             <div class="form-group">
                                 <label for="username">Username:</label><br>
                                 <input type="text" name="username" class="form-control" ngModel>
@@ -22,7 +23,10 @@
                                 <label for="password">Password:</label><br>
                                 <input type="password" name="password" class="form-control" ngModel>
                             </div>
-                            <button class="btn" type="submit" id="login-button">Login</button>
+                            <div *ngIf="error" class="alert alert-danger" role="alert">
+                                {{ error }}
+                              </div>
+                            <button class="btn" type="submit" id="signin-button">Login</button>
                         </form>
                     </div>
                 </div>

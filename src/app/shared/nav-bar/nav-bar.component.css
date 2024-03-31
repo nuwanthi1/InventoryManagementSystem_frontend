@@ -2,6 +2,8 @@
 
 .custom-navbar {
     background-color:#0ea77c;
+    display: flex;
+    justify-content: space-between;
 }
 
 .custom-navbar .nav-link {
