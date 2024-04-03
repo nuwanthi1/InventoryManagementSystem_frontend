@@ -1,19 +1,20 @@
-// delete-asset.service.ts
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteAssetComponent } from '../dialog/delete-asset/delete-asset.component';
+import { NotificationService } from './notification-bar.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeleteAssetService {
   confirmDelete = new EventEmitter<string>(); 
-  assetDeleted = new EventEmitter<string>(); // Event emitter for asset deletion
+  assetDeleted = new EventEmitter<string>(); 
 
   constructor(
     private http: HttpClient,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private notificationService: NotificationService,
   ) { }
 
   openDeleteAssetDialog(assetId: string): void {
@@ -26,7 +27,7 @@ export class DeleteAssetService {
 
     modalRef.componentInstance.confirmDelete.subscribe((confirmed: string) => {
       if (confirmed) {
-        this.deleteAsset(confirmed); // Delete the asset if confirmed
+        this.deleteAsset(confirmed); 
       }
     });
   }
@@ -37,10 +38,12 @@ export class DeleteAssetService {
       .subscribe(
         () => {
           console.log('Asset deleted successfully.');
-          this.assetDeleted.emit(assetId); // Emit event to notify that asset is deleted
+          this.notificationService.showSuccessNotification('Asset deleted successfully'); 
+          this.assetDeleted.emit(assetId); 
         },
         (error) => {
           console.error('Error deleting asset:', error);
+          this.notificationService.showSuccessNotification('Failed to delete asset'); 
         }
       );
   }
