@@ -1,4 +1,3 @@
-// manage-assets.component.ts
 import { Component, OnInit } from '@angular/core';
 import { AddAssetDialogService } from 'src/app/services/add-asset-dialog.service';
 import { DeleteAssetService } from 'src/app/services/delete-asset.service';
@@ -23,6 +22,7 @@ export class ManageAssetsComponent implements OnInit {
   
     this.deleteAssetService.assetDeleted.subscribe((deletedAssetId: string) => {
       this.assets = this.assets.filter(asset => asset.assetId !== deletedAssetId);
+      this.filterAssets(); 
     });
   
     this.retrieveAssetsFromDatabase();
@@ -36,23 +36,40 @@ export class ManageAssetsComponent implements OnInit {
     this.addAssetDialogService.closeAddAssetDialog();
   }
 
+  searchTerm: string = ''; 
+  assets: any[] = []; 
+  filteredAssets: any[] = []; 
+ 
+  searchAssets(): void {
+    this.filterAssets();
+  }
+
+ 
+  private filterAssets(): void {
+    if (this.searchTerm.trim() === '') {
+      this.filteredAssets = this.assets; 
+    } else {
+      this.filteredAssets = this.assets.filter(asset =>
+        asset.assetId.includes(this.searchTerm) ||
+        asset.assetName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        asset.assetType.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        asset.assignedTo.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
+  }
+
+  // Function to delete an asset
   deleteAssetConfirmation(assetId: string): void {
     this.deleteAssetService.openDeleteAssetDialog(assetId);
   }
-  
 
-  assets: any[] = []; 
- 
-  editAsset(asset: any) {
-    console.log('Editing asset:', asset);
-  }
- 
-
-  retrieveAssetsFromDatabase() {
+  // Function to retrieve assets from the database
+  retrieveAssetsFromDatabase(): void {
     this.http.get<any[]>('http://localhost:8080/api/asset/getAssets')
       .subscribe(
         (assets) => {
           this.assets = assets;
+          this.filterAssets(); 
         },
         (error) => {
           console.error('Error fetching assets:', error);
