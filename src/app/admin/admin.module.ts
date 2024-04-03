@@ -9,10 +9,8 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { SharedModule } from '../shared/shared.module';
 import { Form, FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 //import { AddAssetComponent } from '../dialog/add-asset/add-asset.component';
-
-
-
 
 @NgModule({
   declarations: [
@@ -23,14 +21,16 @@ import { Form, FormsModule } from '@angular/forms';
     ManageUsersComponent,
     AdminProfileComponent,
     //AddAssetComponent,
-
-      
   ],
+  
   imports: [
     CommonModule,
     AdminRoutingModule,
     SharedModule,
     FormsModule,
+    RouterModule,
+    
+    
   ]
 })
 export class AdminModule { }

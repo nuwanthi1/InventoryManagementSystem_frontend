@@ -5,13 +5,15 @@ import { AddAssetComponent } from './add-asset/add-asset.component';
 import { UpdateAssetComponent } from './update-asset/update-asset.component';
 import { DeleteAssetComponent } from './delete-asset/delete-asset.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddUserComponent } from './add-user/add-user.component';
 
  
 @NgModule({
   declarations: [
-   AddAssetComponent,
+    AddAssetComponent,
     UpdateAssetComponent,
     DeleteAssetComponent,
+    AddUserComponent,
    
   ],
   imports: [

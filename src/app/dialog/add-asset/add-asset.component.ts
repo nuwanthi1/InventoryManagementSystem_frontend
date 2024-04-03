@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AddAssetDialogService } from 'src/app/services/add-asset-dialog.service';
+import { NotificationService } from 'src/app/services/notification-bar.service';
+import { NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -9,36 +12,57 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AddAssetComponent {
   formVisible: boolean = true; 
+  asset: any = {
+   
+      assetId: '', 
+      assetName: '',
+      assetType: '',
+      assignedTo: ''
+  };
+  
 
   @Output() assetAdded = new EventEmitter<any>();
   @Output() formClosed = new EventEmitter<void>();
 
     
-  asset: any = {};
-
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient, private addAssetDialogService: AddAssetDialogService,
+    private notificationService: NotificationService, public activeModal: NgbActiveModal,
+  ) { }
 
   onSubmit(): void {
-    this.http.post('/api/asset/createAsset', this.asset) 
-      .subscribe((response) => {
-        console.log('Asset added successfully:', response);
-        this.assetAdded.emit(response); 
-      }, (error) => {
-        console.error('Error adding asset:', error);
-      });
+    const assetData = {
+      assetId: this.asset.assetId, 
+      assetName: this.asset.assetName, 
+      assetType: this.asset.assetType, 
+      assignedTo: this.asset.assignedTo
+    };
+
+    if (this.asset.assetId && this.asset.assetName && this.asset.assetType) {
+      this.addAssetDialogService.addAsset(this.asset)
+        .subscribe(
+          (response) => {
+            console.log('Asset added successfully:', response);
+            this.notificationService.showSuccessNotification('Asset added successfully'); 
+            this.assetAdded.emit(response); 
+            this.closeForm(); 
+          },
+          (error) => {
+            console.error('Error adding asset:', error);
+            this.notificationService.showErrorNotification('Failed to add asset');
+          }
+        );
+    } else {
+      console.error('Asset data incomplete. Please fill in all required fields.');
+      this.notificationService.showErrorNotification('Failed to add asset');
+    }
   }
 
- closeForm() {
-    console.log('Closing form...');
-    
-   
-    // Logic to close the form (e.g., reset form fields, hide the form)
-    // For example, you could set a flag to hide the form
-    this.formVisible = false;
 
-    console.log('Form visibility after closing:', this.formVisible);
- }
- 
+  closeForm() {
+    this.activeModal.dismiss('Close button clicked');
+  }
+  
 
 }
 
