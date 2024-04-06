@@ -1,2 +1,25 @@
 <app-user-navbar></app-user-navbar>
-<p>user-assets works!</p>
+<div class="card-container">
+  <div class="row justify-content-center">
+    <ng-container *ngIf="assets.length === 0; else assetCards">
+      <div class="col-md-6">
+        <div class="card text-center no-assets-card">
+          <div class="card-body">
+            <p>You don't have any assets assigned.</p>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #assetCards>
+      <div class="col-md-4" *ngFor="let asset of assets">
+        <app-asset-card 
+          [assetId]="asset.assetId" 
+          [assetName]="asset.assetName" 
+          [assetType]="asset.assetType">
+        </app-asset-card>
+      </div>
+    </ng-template>
+  </div>
+</div>
+<app-footer></app-footer>
+
