@@ -10,6 +10,7 @@ import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { SharedModule } from '../shared/shared.module';
 import { Form, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 //import { AddAssetComponent } from '../dialog/add-asset/add-asset.component';
 
 @NgModule({
@@ -29,7 +30,7 @@ import { RouterModule } from '@angular/router';
     SharedModule,
     FormsModule,
     RouterModule,
-    
+    NgxChartsModule,
     
   ]
 })
