@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AddAssetDialogService } from 'src/app/services/add-asset-dialog.service';
 import { DeleteAssetService } from 'src/app/services/delete-asset.service';
 import { HttpClient } from '@angular/common/http';
+import { EditAssetService } from 'src/app/services/edit-asset.service';
 
 @Component({
   selector: 'app-manage-assets',
@@ -12,7 +13,8 @@ export class ManageAssetsComponent implements OnInit {
   constructor(
     private addAssetDialogService: AddAssetDialogService,
     private deleteAssetService: DeleteAssetService,
-    private http: HttpClient 
+    private editAssetService: EditAssetService,
+    private http: HttpClient,
   ) { }
 
   ngOnInit(): void {
@@ -58,12 +60,17 @@ export class ManageAssetsComponent implements OnInit {
     }
   }
 
-  // Function to delete an asset
+
+  editAsset(assetId: string): void {
+    this.editAssetService.openEditAssetDialog(assetId);
+  }
+
+  
   deleteAssetConfirmation(assetId: string): void {
     this.deleteAssetService.openDeleteAssetDialog(assetId);
   }
 
-  // Function to retrieve assets from the database
+
   retrieveAssetsFromDatabase(): void {
     this.http.get<any[]>('http://localhost:8080/api/asset/getAssets')
       .subscribe(
@@ -76,4 +83,4 @@ export class ManageAssetsComponent implements OnInit {
         }
       );
   }
-}
+} 

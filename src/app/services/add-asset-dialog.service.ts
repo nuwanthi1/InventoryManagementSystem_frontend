@@ -4,13 +4,13 @@ import { AddAssetComponent } from '../dialog/add-asset/add-asset.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { Observable, Subject,tap } from 'rxjs';
-
+ 
 @Injectable({
   providedIn: 'root'
 })
 export class AddAssetDialogService {
   private apiUrl = 'http://localhost:8080/api/asset/createAsset'; 
-  private assetAddedSource = new Subject<any>(); // Subject to emit event when an asset is added
+  private assetAddedSource = new Subject<any>(); 
 
   constructor(private modalService: NgbModal, private http: HttpClient, private authService: AuthService) { }
 
@@ -28,7 +28,7 @@ export class AddAssetDialogService {
   }
 
   addAsset(assetData: any): Observable<any> {
-    console.log('Asset Data:', assetData); // Log assetData to check its contents
+    console.log('Asset Data:', assetData); 
 
     const authToken = localStorage.getItem('authToken');
 
@@ -41,13 +41,13 @@ export class AddAssetDialogService {
 
     console.log('httpOptions:', httpOptions); 
 
-    // Make the HTTP POST request with the authentication token included in the headers
+   
     return this.http.post<any>(this.apiUrl, assetData, httpOptions).pipe(
-      tap(newAsset => this.assetAddedSource.next(newAsset)) // Emit event with new asset
+      tap(newAsset => this.assetAddedSource.next(newAsset)) 
     );
   }
 
-  assetAdded$ = this.assetAddedSource.asObservable(); // Observable to subscribe in other components
+  assetAdded$ = this.assetAddedSource.asObservable();
 
 
 

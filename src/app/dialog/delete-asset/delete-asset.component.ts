@@ -7,7 +7,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./delete-asset.component.css']
 })
 export class DeleteAssetComponent {
-  @Output() confirmDelete = new EventEmitter<string>(); // Emit event when asset deletion is confirmed
+  @Output() confirmDelete = new EventEmitter<string>(); 
 
   assetId: string = ''; 
 
@@ -23,7 +23,7 @@ export class DeleteAssetComponent {
 
   confirm(): void {
     console.log('Confirming deletion...',this.assetId);
-    this.confirmDelete.emit(this.assetId); // Emit event with asset ID when deletion is confirmed
+    this.confirmDelete.emit(this.assetId); 
     this.activeModal.close();
   }
 

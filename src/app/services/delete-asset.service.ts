@@ -43,7 +43,7 @@ export class DeleteAssetService {
         },
         (error) => {
           console.error('Error deleting asset:', error);
-          this.notificationService.showSuccessNotification('Failed to delete asset'); 
+          this.notificationService.showErrorNotification('Failed to delete asset'); 
         }
       );
   }
