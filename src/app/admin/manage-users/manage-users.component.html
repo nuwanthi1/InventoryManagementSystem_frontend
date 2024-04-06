@@ -4,13 +4,13 @@
     <h5 >All Users</h5>
     <div class="search-bar-container">
         <div class="input-group mb-3">
-            <input type="text" class="form-control custom-input" placeholder="Search user" aria-label="Search user" aria-describedby="button-addon2">
+            <input type="text" class="form-control custom-input" placeholder="Search user" aria-label="Search user" aria-describedby="button-addon2" [(ngModel)]="searchTerm" (input)="searchUsers()">
             <div class="input-group-append" >
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+              <button class="btn btn-outline-secondary" type="button" (click)="searchUsers()">Search</button>
             </div>
             <div class="input-group-append"> 
             
-                <button class="btn add-button flxe-grow-1" type="button">Add User</button>
+                <button (click)="openAddUserDialog()" class="btn add-button flxe-grow-1" type="button">Add User</button>
             
             </div>
         </div>
@@ -30,19 +30,30 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users">
-          <td>{{ user.userId }}</td>
-          <td>{{ user.FirstName }}</td>
-          <td>{{ user.LastName }}</td>
-          <td>{{ user.UserName }}</td>
-          <td>{{ user.Email }}</td>
-          <td>{{ user.TelephoneNo }}</td>
-          <td>{{ user.Role }}</td>
+        <ng-container *ngIf="filteredUsers.length > 0; else noUsersFound">
+          <tr *ngFor="let user of filteredUsers">
+          <td>{{ user.id }}</td>
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.telephoneNumber }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let role of user.roles">{{ role.name }}</li>
+            </ul>
+          </td>
           <td class="action-button">
             <button class="btn edit-button" (click)="editUser(user)">Edit</button>
-            <button class="btn delete-button" (click)="deleteUser(user)">Delete</button>
+            <button class="btn delete-button" (click)="deleteUserConfirmation(user.username)">Delete</button>
           </td>
         </tr>
+        </ng-container>
+        <ng-template #noUsersFound>
+          <tr>
+              <td colspan="8" class="text-center">No users found.</td>
+          </tr>
+      </ng-template>
       </tbody>
     </table>
   </div>
