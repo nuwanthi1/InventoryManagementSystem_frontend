@@ -1,7 +1,6 @@
-
 <app-admin-navbar></app-admin-navbar>
 <div class="table-container table-responsive">
-    <h5 >All Users</h5>
+    <h5>All Users</h5>
     <div class="search-bar-container">
         <div class="input-group mb-3">
             <input type="text" class="form-control custom-input" placeholder="Search user" aria-label="Search user" aria-describedby="button-addon2" [(ngModel)]="searchTerm" (input)="searchUsers()">
@@ -9,9 +8,7 @@
               <button class="btn btn-outline-secondary" type="button" (click)="searchUsers()">Search</button>
             </div>
             <div class="input-group-append"> 
-            
-                <button (click)="openAddUserDialog()" class="btn add-button flxe-grow-1" type="button">Add User</button>
-            
+                <button (click)="openAddUserDialog()" class="btn add-button flex-grow-1" type="button">Add User</button>
             </div>
         </div>
     </div>
@@ -31,32 +28,34 @@
       </thead>
       <tbody>
         <ng-container *ngIf="filteredUsers.length > 0; else noUsersFound">
-          <tr *ngFor="let user of filteredUsers">
-          <td>{{ user.id }}</td>
-          <td>{{ user.firstName }}</td>
-          <td>{{ user.lastName }}</td>
-          <td>{{ user.username }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.telephoneNumber }}</td>
-          <td>
-            <ul>
-              <li *ngFor="let role of user.roles">{{ role.name }}</li>
-            </ul>
-          </td>
-          <td class="action-button">
-            <button class="btn edit-button" (click)="editUser(user)">Edit</button>
-            <button class="btn delete-button" (click)="deleteUserConfirmation(user.username)">Delete</button>
-          </td>
-        </tr>
+          <tr *ngFor="let user of pagedUsers">
+            <td>{{ user.id }}</td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.telephoneNumber }}</td>
+            <td>
+              <ul>
+                <li *ngFor="let role of user.roles">{{ role.name }}</li>
+              </ul>
+            </td>
+            <td class="action-button">
+              <button class="btn edit-button" (click)="editUser(user)">Edit</button>
+              <button class="btn delete-button" (click)="deleteUserConfirmation(user.username)">Delete</button>
+            </td>
+          </tr>
         </ng-container>
         <ng-template #noUsersFound>
           <tr>
               <td colspan="8" class="text-center">No users found.</td>
           </tr>
-      </ng-template>
+        </ng-template>
       </tbody>
     </table>
-  </div>
-  <app-footer></app-footer>
+    
+    <app-pagination [totalItems]="filteredUsers.length" [itemsPerPage]="6" (pageChanged)="onPageChange($event)"></app-pagination>
+</div>
 
+<app-footer></app-footer>
 

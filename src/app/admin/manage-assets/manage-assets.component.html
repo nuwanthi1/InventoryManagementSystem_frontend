@@ -24,15 +24,13 @@
         </thead>
         <tbody>
             <ng-container *ngIf="filteredAssets.length > 0; else noAssetsFound">
-                <tr *ngFor="let asset of filteredAssets">
+                <tr *ngFor="let asset of pagedAssets">
                     <td>{{ asset.assetId }}</td>
                     <td>{{ asset.assetName }}</td>
                     <td>{{ asset.assetType }}</td>
                     <td>{{ asset.assignedTo }}</td>
                     <td class="action-button">
-                        
                         <button class="btn edit-button" (click)="editAsset(asset.assetId)">Edit</button>
-
                         <button class="btn delete-button" (click)="deleteAssetConfirmation(asset.assetId)">Delete</button>
                     </td>
                 </tr>
@@ -44,5 +42,6 @@
             </ng-template>
         </tbody>
     </table>
+    <app-pagination [totalItems]="filteredAssets.length" [itemsPerPage]="pageSize" (pageChanged)="onPageChange($event)"></app-pagination>
 </div>
 <app-footer></app-footer>

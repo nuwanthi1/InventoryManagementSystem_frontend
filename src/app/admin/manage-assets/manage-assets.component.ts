@@ -41,12 +41,14 @@ export class ManageAssetsComponent implements OnInit {
   searchTerm: string = ''; 
   assets: any[] = []; 
   filteredAssets: any[] = []; 
- 
+  pagedAssets: any[] = []; 
+  currentPage: number = 1; 
+  pageSize: number = 6; 
+
   searchAssets(): void {
     this.filterAssets();
   }
 
- 
   private filterAssets(): void {
     if (this.searchTerm.trim() === '') {
       this.filteredAssets = this.assets; 
@@ -58,18 +60,23 @@ export class ManageAssetsComponent implements OnInit {
         asset.assignedTo.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
     }
+    // After filtering, update the pagedAssets array
+    this.updatePagedAssets();
   }
-
 
   editAsset(assetId: string): void {
     this.editAssetService.openEditAssetDialog(assetId);
   }
 
-  
   deleteAssetConfirmation(assetId: string): void {
     this.deleteAssetService.openDeleteAssetDialog(assetId);
   }
 
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    // After changing the page, update the pagedAssets array
+    this.updatePagedAssets();
+  }
 
   retrieveAssetsFromDatabase(): void {
     this.http.get<any[]>('http://localhost:8080/api/asset/getAssets')
@@ -83,4 +90,10 @@ export class ManageAssetsComponent implements OnInit {
         }
       );
   }
-} 
+
+  private updatePagedAssets(): void {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = Math.min(startIndex + this.pageSize, this.filteredAssets.length);
+    this.pagedAssets = this.filteredAssets.slice(startIndex, endIndex);
+  }
+}

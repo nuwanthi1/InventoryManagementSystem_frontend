@@ -15,16 +15,14 @@ export class ManageUsersComponent implements OnInit {
     private deleteUserService: DeleteUserService,
   ) { }
 
-    ngOnInit(): void {
+  ngOnInit(): void {
     this.addUserDialogService.userAdded$.subscribe(newUser => {
-    this.users.push(newUser); 
-    
-  });
-    this.deleteUserService.userDeleted.subscribe((deletedusername: string) => {
-    this.users = this.users.filter(user => user.username !== deletedusername);
-    this.filterUsers(); 
-      
-    
+      this.users.push(newUser); 
+    });
+
+    this.deleteUserService.userDeleted.subscribe((deletedUsername: string) => {
+      this.users = this.users.filter(user => user.username !== deletedUsername);
+      this.filterUsers(); 
     });
     
     this.retrieveUsersFromDatabase();
@@ -41,12 +39,14 @@ export class ManageUsersComponent implements OnInit {
   searchTerm: string = ''; 
   users: any[] = []; 
   filteredUsers: any[] = []; 
- 
+  pagedUsers: any[] = []; 
+  currentPage: number = 1; 
+  pageSize: number = 6; 
+
   searchUsers(): void {
     this.filterUsers();
   }
 
- 
   private filterUsers(): void {
     if (this.searchTerm.trim() === '') {
       this.filteredUsers = this.users; 
@@ -57,22 +57,11 @@ export class ManageUsersComponent implements OnInit {
         (user.lastName && user.lastName.toLowerCase().includes(this.searchTerm.toLowerCase()))
       );
     }
+     // After filtering, update the pagedAssets array
+  this.updatePagedUsers();
   }
 
-
-  retrieveUsersFromDatabase(): void {
-    this.http.get<any[]>('http://localhost:8080/api/user/getAllUsers') 
-      .subscribe(
-        (users) => {
-          this.users = users;
-          this.filterUsers();
-        },
-        (error) => {
-          console.error('Error fetching users:', error);
-        }
-      );
-  }
-
+ 
 
   editUser(user: any) {
     console.log('Editing User:', user);
@@ -82,4 +71,28 @@ export class ManageUsersComponent implements OnInit {
     this.deleteUserService.openDeleteUserDialog(username);
   }
 
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    this.updatePagedUsers();
+  }
+
+  retrieveUsersFromDatabase(): void {
+    this.http.get<any[]>('http://localhost:8080/api/user/getAllUsers')
+      .subscribe(
+        (users) => {
+          this.users = users;
+          this.filterUsers(); 
+        },
+        (error) => {
+          console.error('Error fetching users:', error);
+        }
+      );
+  }
+
+  private updatePagedUsers(): void {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = Math.min(startIndex + this.pageSize, this.filteredUsers.length);
+    this.pagedUsers = this.filteredUsers.slice(startIndex, endIndex);
+  }
 }
+
