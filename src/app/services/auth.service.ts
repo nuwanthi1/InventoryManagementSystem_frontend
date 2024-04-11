@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   setUserRole(role: string): void {
-    console.log('Setting user role:', role); // Add this console.log statement
+    console.log('Setting user role:', role); 
     localStorage.setItem(this.roleKey, role);
   }
 
@@ -47,4 +47,5 @@ export class AuthService {
     localStorage.removeItem('role');
     this.router.navigate(['/signin']);
   }
+  
 }
