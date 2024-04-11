@@ -1,7 +1,6 @@
-/* side-menu.component.css */
 .side-menu {
-    position: relative; /* Ensure it's relative to its container */
-    z-index: 1000; /* Adjust the value as needed */
+    position: relative; 
+    z-index: 1000; 
     
 }
 
@@ -12,8 +11,6 @@
     width: 150px;
     height:100%;
     background-color: #fbf9f9;
-  /*  border: 1px solid #100f0f; */
-   /* border-radius: 5px; */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 10px;
     display: none;
@@ -31,7 +28,7 @@
     color: #333;
     text-decoration: none;
     padding: 5px 10px;
-    background-color: white; /* Set the background color to white */
+    background-color: white; 
     transition: background-color 0.3s ease;
 }
 

@@ -7,20 +7,20 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
-  constructor(private authService: AuthService) {} // Inject AuthService if available
+  constructor(private authService: AuthService) {} 
 
-  // Check if the user is logged in
+
   isLoggedIn(): boolean {
-    return this.authService.isAuthenticated(); // Implement this method in AuthService
+    return this.authService.isAuthenticated(); 
   }
 
   isAdmin(): boolean {
     return this.authService.isAdmin();
   }
   
-  // Perform signout
+ 
   signout(): void {
-    this.authService.signout(); // Implement this method in AuthService
+    this.authService.signout(); 
   }
 
 }
