@@ -27,6 +27,10 @@ export class ManageAssetsComponent implements OnInit {
       this.filterAssets(); 
     });
   
+    this.editAssetService.assetUpdated$.subscribe(() => {
+      this.retrieveAssetsFromDatabase(); // Update assets when an asset is updated
+    });
+
     this.retrieveAssetsFromDatabase();
   }
   
@@ -60,7 +64,7 @@ export class ManageAssetsComponent implements OnInit {
         asset.assignedTo.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
     }
-    // After filtering, update the pagedAssets array
+
     this.updatePagedAssets();
   }
 
@@ -74,7 +78,6 @@ export class ManageAssetsComponent implements OnInit {
 
   onPageChange(page: number): void {
     this.currentPage = page;
-    // After changing the page, update the pagedAssets array
     this.updatePagedAssets();
   }
 
