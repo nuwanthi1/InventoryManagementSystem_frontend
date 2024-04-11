@@ -7,6 +7,7 @@ import { DeleteAssetComponent } from './delete-asset/delete-asset.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddUserComponent } from './add-user/add-user.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
 
  
 @NgModule({
@@ -16,6 +17,7 @@ import { DeleteUserComponent } from './delete-user/delete-user.component';
     DeleteAssetComponent,
     AddUserComponent,
     DeleteUserComponent,
+    UpdateUserComponent,
    
   ],
   imports: [

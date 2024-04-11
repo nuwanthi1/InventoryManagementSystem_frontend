@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AddUserDialogService } from 'src/app/services/add-user-dialog.service';
 import { HttpClient } from '@angular/common/http';
 import { DeleteUserService } from 'src/app/services/delete-user.service';
+import { EditUserService } from 'src/app/services/edit-user.service'; 
 
 @Component({
   selector: 'app-manage-users',
@@ -13,6 +14,7 @@ export class ManageUsersComponent implements OnInit {
     private addUserDialogService: AddUserDialogService,
     private http: HttpClient,
     private deleteUserService: DeleteUserService,
+    private editUserService: EditUserService 
   ) { }
 
   ngOnInit(): void {
@@ -23,6 +25,14 @@ export class ManageUsersComponent implements OnInit {
     this.deleteUserService.userDeleted.subscribe((deletedUsername: string) => {
       this.users = this.users.filter(user => user.username !== deletedUsername);
       this.filterUsers(); 
+    });
+
+    this.editUserService.userUpdated.subscribe((updatedUser: any) => {
+      const index = this.users.findIndex(user => user.username === updatedUser.username);
+      if (index !== -1) {
+        this.users[index] = updatedUser;
+        this.filterUsers();
+      }
     });
     
     this.retrieveUsersFromDatabase();
@@ -57,14 +67,11 @@ export class ManageUsersComponent implements OnInit {
         (user.lastName && user.lastName.toLowerCase().includes(this.searchTerm.toLowerCase()))
       );
     }
-     // After filtering, update the pagedAssets array
-  this.updatePagedUsers();
+    this.updatePagedUsers(); 
   }
 
- 
-
   editUser(user: any) {
-    console.log('Editing User:', user);
+    this.editUserService.openEditUserDialog(user); 
   }
 
   deleteUserConfirmation(username: string): void {
@@ -95,4 +102,3 @@ export class ManageUsersComponent implements OnInit {
     this.pagedUsers = this.filteredUsers.slice(startIndex, endIndex);
   }
 }
-

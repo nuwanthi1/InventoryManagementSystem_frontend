@@ -1,5 +1,3 @@
-// add-user.component.ts
-
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NotificationService } from 'src/app/services/notification-bar.service';
@@ -19,7 +17,9 @@ export class AddUserComponent {
     email: '',
     firstName: '',
     lastName: '',
-    telephoneNumber: ''
+    telephoneNumber: '',
+    password: '',
+    role:''
   };
 
   @Output() userAdded = new EventEmitter<any>();
