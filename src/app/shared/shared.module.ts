@@ -5,6 +5,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { FormsModule } from '@angular/forms';
 import { AssetCardComponent } from './asset-card/asset-card.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -19,7 +20,8 @@ import { AssetCardComponent } from './asset-card/asset-card.component';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
   ],
 
   exports: [
@@ -27,6 +29,7 @@ import { AssetCardComponent } from './asset-card/asset-card.component';
     FooterComponent,
     PaginationComponent,
     AssetCardComponent,
+    RouterModule,
   
   ]
 })
