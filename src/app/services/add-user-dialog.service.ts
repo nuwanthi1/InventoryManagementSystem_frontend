@@ -26,7 +26,7 @@ export class AddUserDialogService {
 
   closeAddUserDialog() {
     console.log('Closing Add User Dialog');
-    // this.modalService.dismissAll();
+    
   }
 
   addUser(userData: any): Observable<any> {

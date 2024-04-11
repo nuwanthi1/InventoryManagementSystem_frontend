@@ -101,4 +101,8 @@ export class ManageUsersComponent implements OnInit {
     const endIndex = Math.min(startIndex + this.pageSize, this.filteredUsers.length);
     this.pagedUsers = this.filteredUsers.slice(startIndex, endIndex);
   }
+
+  getRoleDisplayName(role: string): string {
+    return role === 'ROLE_ADMIN' ? 'Admin' : 'User';
+  }
 }

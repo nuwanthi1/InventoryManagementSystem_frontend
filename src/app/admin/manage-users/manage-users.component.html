@@ -37,7 +37,7 @@
                     <td>{{ user.telephoneNumber }}</td>
                     <td>
                         <ul>
-                            <li *ngFor="let role of user.roles">{{ role.name }}</li>
+                            <li *ngFor="let role of user.roles">{{ getRoleDisplayName(role.name) }}</li>
                         </ul>
                     </td>
                     <td class="action-button">
@@ -58,4 +58,5 @@
 </div>
 
 <app-footer></app-footer>
+
 
