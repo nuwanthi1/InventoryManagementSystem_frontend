@@ -24,6 +24,7 @@ import { JwtInterceptor } from './services/jwt-interceptor.service';
     SignupComponent,
     SigninComponent,
  
+ 
    
      ],
   
@@ -39,6 +40,7 @@ import { JwtInterceptor } from './services/jwt-interceptor.service';
     DialogModule,
    
   ],
+
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

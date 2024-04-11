@@ -11,7 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 import { Form, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-//import { AddAssetComponent } from '../dialog/add-asset/add-asset.component';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     ManageAssetsComponent,
     ManageUsersComponent,
     AdminProfileComponent,
-    //AddAssetComponent,
+    
   ],
   
   imports: [

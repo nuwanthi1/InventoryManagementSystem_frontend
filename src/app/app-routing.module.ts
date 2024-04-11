@@ -24,13 +24,13 @@ import { AdminGuard } from './guards/admin.guard';
     },
     {
       path: 'admin',
-      canActivate: [AuthGuard, AdminGuard], 
-      loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) // Lazy loading admin module
+      canActivate: [AdminGuard], 
+      loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) 
     },
     {
       path: 'user',
       canActivate: [AuthGuard], 
-      loadChildren: () => import('./user/user.module').then(m => m.UserModule) // Lazy loading user module
+      loadChildren: () => import('./user/user.module').then(m => m.UserModule) 
     },
    
 
