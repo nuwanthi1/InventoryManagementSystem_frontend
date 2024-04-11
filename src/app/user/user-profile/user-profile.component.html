@@ -7,36 +7,42 @@
           User Profile
         </div>
         <div class="card-body">
-      <div class="text-center mb-4">
-        <label for="photo" class="profile-pic-wrapper">
-          <img src="assets/default-profile-pic.png" alt="Profile Picture" class="profile-pic img-thumbnail">
-          <input type="file" class="form-control-file d-none" id="photo" name="photo" accept="image/*">
-        </label>
+       <div class="text-center mb-4">
+            <label for="photo" class="profile-pic-wrapper">
+              <img src="assets/Admin1.png" alt="Profile Picture" class="profile-pic img-thumbnail">
+              <input type="file" class="form-control-file d-none" id="photo" name="photo" accept="image/*">
+            </label>
+          </div>
+          <form #profileForm="ngForm" (submit)="updateUserProfile(profileForm)">
+            <div class="form-group">
+              <label for="firstname">First Name:</label>
+              <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="userData.firstName" required>
+            </div>
+            <div class="form-group" >
+              <label for="lastname">Last Name:</label>
+              <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="userData.lastName" required>
+            </div>
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" class="form-control" id="username" name="username" [(ngModel)]="userData.username" required>
+            </div>
+            <div class="form-group" id="email-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" name="email" [(ngModel)]="userData.email" required>
+            </div>
+            <div class="form-group" id="telephoneno-group">
+              <label for="telephoneno">Telephone No:</label>
+              <input type="text" class="form-control" id="telephoneno" name="telephoneno" [(ngModel)]="userData.telephoneNumber" required>
+            </div>
+            <div class="form-group" id="password-group">
+              <label for="password">Password:</label>
+              <input type="password" class="form-control" id="password" name="password" [(ngModel)]="userData.password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-save">Save Profile</button>
+          </form>
+        </div>
       </div>
-      <form>
-        <div class="form-group">
-            <label for="firstname">firstname</label>
-            <input type="text" class="form-control" id="firstname" name="firstname" required>
-          </div>
-        <div class="form-group">
-          <label for="lastname">Lastname:</label>
-          <input type="text" class="form-control" id="lastname" name="lastname" required>
-        </div>
-        <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" class="form-control" id="username" name="username" required>
-          </div>
-        <div class="form-group" id="email-group">
-          <label for="email">Email:</label>
-          <input type="email" class="form-control" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-            <label for="telephoneno">Telephone No:</label>
-            <input type="text" class="form-control" id="telephoneno" name="telephoneno" required>
-          </div>
-        <button type="submit" class="btn btn-primary btn-save ">Save Profile</button>
-      </form>
     </div>
   </div>
 </div>
-
+<app-footer></app-footer>

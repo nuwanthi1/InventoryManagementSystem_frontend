@@ -7,24 +7,31 @@
           Admin Profile
         </div>
         <div class="card-body">
-      <div class="text-center mb-4">
-        <label for="photo" class="profile-pic-wrapper">
-          <img src="assets/default-profile-pic.png" alt="Profile Picture" class="profile-pic img-thumbnail">
-          <input type="file" class="form-control-file d-none" id="photo" name="photo" accept="image/*">
-        </label>
+          <div class="text-center mb-4">
+            <label for="photo" class="profile-pic-wrapper">
+              <img src="assets/Admin1.png" alt="Profile Picture" class="profile-pic img-thumbnail">
+              <input type="file" class="form-control-file d-none" id="photo" name="photo" accept="image/*">
+            </label>
+          </div>
+          <form (submit)="updateAdminProfile()" >
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" class="form-control" id="username" name="username" required [(ngModel)]="adminData.username">
+            </div>
+            <div class="form-group" id="email-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" name="email" required [(ngModel)]="adminData.email">
+            </div>
+            <div class="form-group" id="password-group">
+              <label for="password">Password:</label>
+              <input type="password" class="form-control" id="password" name="password" [(ngModel)]="adminData.password" required>
+            </div>
+            <button type="submit" class="btn  btn-save">Save Profile</button>
+          </form>
+        </div>
       </div>
-      <form>
-        <div class="form-group">
-          <label for="username">Username:</label>
-          <input type="text" class="form-control" id="username" name="username" required>
-        </div>
-        <div class="form-group" id="email-group">
-          <label for="email">Email:</label>
-          <input type="email" class="form-control" id="email" name="email" required>
-        </div>
-        <button type="submit" class="btn btn-primary btn-save ">Save Profile</button>
-      </form>
     </div>
   </div>
 </div>
 <app-footer></app-footer>
+
