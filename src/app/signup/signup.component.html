@@ -64,7 +64,17 @@
                     </div>
                   </div>
                 
-                  <button class="btn-submit" [disabled]="!signupForm.valid" type="submit">Submit</button>
+                  <div class="form-group">
+                    <label for="confirmPassword">Confirm Password:</label><br>
+                    <input #confirmPassword="ngModel" required minlength="5" type="password" name="confirmPassword" id="confirmPassword" class="form-control" ngModel>
+                    <div *ngIf="confirmPassword.touched && confirmPassword.invalid" class="form-error alert alert-danger" role="alert"> 
+                      <p *ngIf="confirmPassword.errors?.['required']">Confirm Password is required!</p>
+                      <p *ngIf="confirmPassword.errors?.['minlength']">Confirm Password should be at least 5 characters long.</p>
+                      <p *ngIf="signupForm.value.password !== signupForm.value.confirmPassword">Passwords do not match.</p>
+                    </div>
+                  </div>
+                  
+                  <button class="btn btn-submit btn-block" [disabled]="!signupForm.valid" type="submit">Submit</button>
                 </form>
                 
             </div>

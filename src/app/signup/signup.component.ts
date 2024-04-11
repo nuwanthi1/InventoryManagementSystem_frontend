@@ -12,14 +12,13 @@ export class SignupComponent {
   usernameError: string = ''; 
   emailError: string = '';    
 
-
   constructor(
     private signupService: SignupService,
     private notificationService: NotificationService 
   ) { }
 
   onSubmit(signupForm: NgForm) {
-    if (signupForm.valid) {
+    if (signupForm.valid && signupForm.value.password === signupForm.value.confirmPassword) {
       const userData = {
         username: signupForm.value.username,
         firstName: signupForm.value.firstName,
@@ -29,28 +28,33 @@ export class SignupComponent {
         password: signupForm.value.password,
       };
 
-      // Call the signup service method
       this.signupService.signup(userData)
         .subscribe(
           response => {
             console.log('Signup successful:', response);
             this.notificationService.showSuccessNotification('Signup successful');
-
+            signupForm.resetForm();
+            this.clearUsernameError();
+            this.clearEmailError();
           },
           error => {
             console.error('Failed to Signup:', error.error.message);
-              this.notificationService.showErrorNotification('Failed to signup. Please try again.');
-           
+            this.notificationService.showErrorNotification('Failed to signup. Please try again.');
+            
             if (error.error.message.includes('Username is already taken')) {
               this.usernameError = 'Username already taken';
             }
-            if (error.error.message.includes('Email is already in use')) 
+            if (error.error.message.includes('Email is already in use')) {
               this.emailError = 'Email already in use';
-            
+            }
           }
         );
+    } else {
+      
+      this.notificationService.showErrorNotification('Passwords do not match.');
     }
   }
+
   clearUsernameError(): void {
     this.usernameError = '';
   }
@@ -58,7 +62,4 @@ export class SignupComponent {
   clearEmailError(): void {
     this.emailError = '';
   }
-
-  
-
 }

@@ -36,7 +36,7 @@ export class SigninComponent {
           }
         },
         error => {
-          // Authentication failed, display error message
+          
           if (error.status === 401) {
             this.error = 'Username and password do not match. Please try again.';
           } else {
@@ -44,8 +44,8 @@ export class SigninComponent {
           }
           console.error('Signin failed:', error);
           setTimeout(() => {
-            this.error = null; // Clear error message after 3 seconds
-          }, 3000); // 3000 milliseconds = 3 seconds
+            this.error = null; 
+          }, 3000); 
         }
       );
   }
