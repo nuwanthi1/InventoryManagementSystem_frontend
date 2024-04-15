@@ -1,0 +1,56 @@
+<form *ngIf="formVisible" (ngSubmit)="onSubmit()" class="add-user-form">
+    <h3>Add User</h3>
+    
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input #usernameInput="ngModel" required [(ngModel)]="user.username" name="username" id="username" class="form-control">
+        <div *ngIf="usernameInput.touched && !user.username" class="alert alert-danger">Username is required.</div>
+    </div>
+
+    <div class="form-group">
+        <label for="role">Role:</label>
+        <select #roleInput="ngModel" required [(ngModel)]="user.role" name="role" id="role" class="form-control">
+            <option value="" disabled selected>Select role</option>
+            <option value="ROLE_USER">user</option>
+            <option value="ROLE_ADMIN">admin</option>
+        </select>
+        <div *ngIf="roleInput.touched && !user.role" class="alert alert-danger">Role is required.</div>
+    </div>
+    
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input #emailInput="ngModel" required [(ngModel)]="user.email" name="email" id="email" class="form-control" type="email">
+        <div *ngIf="emailInput.touched && !user.email" class="alert alert-danger">Email is required.</div>
+    </div>
+    
+    <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input #firstNameInput="ngModel" required [(ngModel)]="user.firstName" name="firstName" id="firstName" class="form-control">
+        <div *ngIf="firstNameInput.touched && !user.firstName" class="alert alert-danger">First Name is required.</div>
+    </div>
+    
+    <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input #lastNameInput="ngModel" required [(ngModel)]="user.lastName" name="lastName" id="lastName" class="form-control">
+        <div *ngIf="lastNameInput.touched && !user.lastName" class="alert alert-danger">Last Name is required.</div>
+    </div>
+    
+    <div class="form-group">
+        <label for="telephoneNumber">Telephone Number:</label>
+        <input #telephoneNumberInput="ngModel" required [(ngModel)]="user.telephoneNumber" name="telephoneNumber" id="telephoneNumber" class="form-control">
+        <div *ngIf="telephoneNumberInput.touched && !user.telephoneNumber" class="alert alert-danger">Telephone Number is required.</div>
+    </div>
+    
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input #passwordInput="ngModel" required [(ngModel)]="user.password" name="password" id="password" class="form-control" type="password">
+        <div *ngIf="passwordInput.touched && !user.password" class="alert alert-danger">Password is required.</div>
+    </div>
+
+    <div class="button-group">
+        <button type="submit" class="btn btn-add">Add User </button>
+        <button type="button" class="btn btn-cancel" (click)="closeForm()">Close</button>
+    </div>
+</form>
+
+     

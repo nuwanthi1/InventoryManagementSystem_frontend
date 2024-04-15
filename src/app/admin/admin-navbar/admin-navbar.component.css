@@ -1,5 +1,9 @@
 .admin-navbar {
     background-color: #0ea77c;
+    display: flex;
+    justify-content: space-between;
+    
+   
   }
   
   .navbar-toggler {
@@ -52,6 +56,20 @@
   .menu-options a:hover {
     background-color: #f0f0f0;
   }
+  .signout-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    padding: 5px 10px;
+    position: absolute;
+    top: 50%; 
+    transform: translateY(-50%);
+    right: 20px; 
+  }
+  
+  
   
 
 

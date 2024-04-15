@@ -1,3 +1,63 @@
 <app-admin-navbar></app-admin-navbar>
-<app-footer></app-footer>
 
+<div class="container mt-4 ">
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-body d-flex flex-column align-items-center">
+          <h6 class="card-title mb-4">Total Assets</h6>
+          <ngx-charts-bar-vertical
+            [view]="[500, 200]"
+            [scheme]="colorScheme"
+            [results]="totalAssetsData"
+            [xAxis]="true"
+            [yAxis]="true"
+            [legend]="true"
+            [legendTitle]="'Type'"
+            (select)="onSelect($event)">
+          </ngx-charts-bar-vertical>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-body d-flex flex-column align-items-center">
+          <h6 class="card-title mb-4">Assigned Assets</h6>
+          <ngx-charts-bar-vertical
+            [view]="[500, 200]"
+            [scheme]="colorScheme"
+            [results]="assignedAssetsData"
+            [xAxis]="true"
+            [yAxis]="true"
+            [legend]="true"
+            [legendTitle]="'Type'"
+            (select)="onSelect($event)">
+          </ngx-charts-bar-vertical>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-body d-flex flex-column align-items-center">
+          <h6 class="card-title mb-4">Free Assets </h6>
+          <ngx-charts-bar-vertical
+            [view]="[500, 200]"
+            [scheme]="colorScheme"
+            [results]="freeAssetsData"
+            [xAxis]="true"
+            [yAxis]="true"
+            [legend]="true"
+            [legendTitle]="'Type'"
+            (select)="onSelect($event)">
+          </ngx-charts-bar-vertical>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

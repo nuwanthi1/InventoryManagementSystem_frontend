@@ -1,0 +1,45 @@
+<form  (ngSubmit)="onSubmit()" class="update-user-form">
+    <h3>Update User</h3>
+
+    <div class="form-group"> 
+        <label for="username">Username:</label>
+        <input [(ngModel)]="user.username" name="username" id="username" class="form-control">
+    </div>
+
+  <div class="form-group">
+    <label for="role">Role:</label>
+    <select [(ngModel)]="selectedRole" name="role" id="role" class="form-control">
+        <option [value]="'ROLE_USER'">User</option>
+        <option [value]="'ROLE_ADMIN'">Admin</option>
+    </select>
+</div>
+
+    
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input [(ngModel)]="user.email" name="email" id="email" class="form-control" type="email">
+    </div>
+    
+    <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input [(ngModel)]="user.firstName" name="firstName" id="firstName" class="form-control">
+    </div>
+    
+    <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input [(ngModel)]="user.lastName" name="lastName" id="lastName" class="form-control">
+    </div>
+    
+    <div class="form-group">
+        <label for="telephoneNumber">Telephone Number:</label>
+        <input [(ngModel)]="user.telephoneNumber" name="telephoneNumber" id="telephoneNumber" class="form-control">
+    </div>
+    
+    <div class="button-group">
+        <button type="submit" class="btn btn-add">Update User </button>
+        <button type="button" class="btn btn-cancel" (click)="onCancel()">Close</button>
+    </div>
+</form>
+
+     
+            

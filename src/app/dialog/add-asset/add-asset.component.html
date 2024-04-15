@@ -1,22 +1,41 @@
-
 <form *ngIf="formVisible" (ngSubmit)="onSubmit()" class="add-asset-form">
-    <h3>Add Asset</h3>
-    <div class="form-group">
-      <label for="assetId">Asset ID:</label>
-      <input type="text" class="form-control" id="assetId" name="assetId" [(ngModel)]="asset.assetId" required>
-    </div>
-    <div class="form-group">
-      <label for="assetName">Asset Name:</label>
-      <input type="text" class="form-control" id="assetName" name="assetName" [(ngModel)]="asset.assetName" required>
-    </div>
-    <div class="form-group">
-      <label for="assetType">Asset Type:</label>
-      <input type="text" class="form-control" id="assetType" name="assetType" [(ngModel)]="asset.assetType" required>
-    </div>
-    <div class="form-group">
-      <label for="assignedTo">Assigned To:</label>
-      <input type="text" class="form-control" id="assignedTo" name="assignedTo" [(ngModel)]="asset.assignedTo" >
-    </div>
+  <h3>Add Asset</h3>
+  
+  <div class="form-group">
+    <label for="assetId">Asset ID:</label>
+    <input #assetIdInput="ngModel" required [(ngModel)]="asset.assetId" name="assetId" id="assetId" class="form-control">
+    <div *ngIf="assetIdTakenError" class="alert alert-danger" role="alert">{{ assetIdTakenError }}</div>
+    <div *ngIf="assetIdInput.touched && !asset.assetId" class="alert alert-danger">Asset ID is required.</div>
+</div>
+
+<div class="form-group">
+  <label for="assetName">Asset Name:</label>
+  <input #assetNameInput="ngModel" required [(ngModel)]="asset.assetName" name="assetName" id="assetName" class="form-control">
+  <div *ngIf="assetNameTakenError" class="alert alert-danger">{{ assetNameTakenError }}</div>
+  <div *ngIf="assetNameInput.touched && !asset.assetName" class="alert alert-danger">Asset Name is required.</div>
+</div>
+ 
+ <div class="form-group">
+  <label for="assetType">Asset Type:</label>
+  <select #assetTypeInput="ngModel" required [(ngModel)]="asset.assetType" name="assetType" id="assetType" class="form-control">
+      <option value="" disabled selected>Select Asset Type</option>
+      <option value="Laptop">Laptop</option>
+      <option value="Mobile">Mobile</option>
+      <option value="Computer">Computer</option>
+  </select>
+  <div *ngIf="assetTypeInput.touched && !asset.assetType" class="alert alert-danger">Asset Type is required.</div>
+</div>
+
+  
+<div class="form-group">
+  <label for="assignedTo">Assigned To:</label>
+  <select class="form-control" id="assignedTo" name="assignedTo" [(ngModel)]="asset.assignedTo">
+      <option value="" selected>No one</option>
+      <option *ngFor="let username of availableUsernames" [value]="username">{{ username }}</option>
+  </select>
+</div>
+
+
     <div class="button-group">
       <button type="submit" class="btn btn-add">Add</button>
       <button type="button" class="btn btn-cancel" (click)="closeForm()">Close</button>

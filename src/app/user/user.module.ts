@@ -5,6 +5,8 @@ import { UserAssetsComponent } from './user-assets/user-assets.component';
 import { UserNavbarComponent } from './user-navbar/user-navbar.component';
 import { UserSidemenuComponent } from './user-sidemenu/user-sidemenu.component';
 import { UserRoutingModule } from './user-routing.module';
+import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -18,6 +20,9 @@ import { UserRoutingModule } from './user-routing.module';
   imports: [
     CommonModule,
     UserRoutingModule,
+    FormsModule,
+    SharedModule,
+    
   ]
 })
 export class UserModule { }

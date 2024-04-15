@@ -1,4 +1,5 @@
 
+
 .update-asset-form {
     max-width: 500px;
     margin: 0 auto;
@@ -36,7 +37,7 @@
     margin-left: 10px;
   }
   
-  .btn-add{
+  .btn-update{
     background-color: #29ab87;
   
   }

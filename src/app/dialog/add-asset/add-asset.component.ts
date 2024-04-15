@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { AddAssetDialogService } from 'src/app/services/add-asset-dialog.service';
+import { NotificationService } from 'src/app/services/notification-bar.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-add-asset',
@@ -9,36 +12,77 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AddAssetComponent {
   formVisible: boolean = true; 
+  asset: any = {
+    assetId: '', 
+    assetName: '',
+    assetType: '',
+    assignedTo: ''
+  };
+  
+  availableUsernames: string[] = [];
+  assetIdTakenError: string = '';
+  assetNameTakenError: string = '';
 
   @Output() assetAdded = new EventEmitter<any>();
   @Output() formClosed = new EventEmitter<void>();
 
     
-  asset: any = {};
+  constructor(
+    private http: HttpClient, 
+    private addAssetDialogService: AddAssetDialogService,
+    private notificationService: NotificationService, 
+    public activeModal: NgbActiveModal,
+    private userService: UserService, 
+  ) { }
 
-  constructor(private http: HttpClient) {}
-
-  onSubmit(): void {
-    this.http.post('/api/asset/createAsset', this.asset) 
-      .subscribe((response) => {
-        console.log('Asset added successfully:', response);
-        this.assetAdded.emit(response); 
-      }, (error) => {
-        console.error('Error adding asset:', error);
-      });
+  ngOnInit(): void {
+    this.userService.getAvailableUsernames().subscribe(
+      (usernames: string[]) => {
+        this.availableUsernames = usernames;
+      },
+      (error: any) => {
+        console.error('Error fetching available usernames:', error);
+      }
+    );
   }
 
- closeForm() {
-    console.log('Closing form...');
-    
-   
-    // Logic to close the form (e.g., reset form fields, hide the form)
-    // For example, you could set a flag to hide the form
-    this.formVisible = false;
+  onSubmit(): void {
+    const assetData = {
+      assetId: this.asset.assetId, 
+      assetName: this.asset.assetName, 
+      assetType: this.asset.assetType, 
+      assignedTo: this.asset.assignedTo
+    };
 
-    console.log('Form visibility after closing:', this.formVisible);
- }
- 
+    if (this.asset.assetId && this.asset.assetName && this.asset.assetType) {
+      this.addAssetDialogService.addAsset(this.asset)
+        .subscribe(
+          (response) => {
+            console.log('Asset added successfully:', response);
+            this.notificationService.showSuccessNotification('Asset added successfully'); 
+            this.assetAdded.emit(response); 
+            this.closeForm(); 
+          },
+          (error) => {
+            console.error('Error adding asset:', error);
+            this.notificationService.showErrorNotification('Failed to add asset');
 
+            if (error.error && error.error.message) {
+              if (error.error.message.includes('Asset ID already taken')) {
+                this.assetIdTakenError = 'Asset ID already taken';
+              } else if (error.error.message.includes('Asset name already taken')) {
+                this.assetNameTakenError = 'Asset name already taken';
+              }
+            }
+          }
+        );
+    } else {
+      console.error('Asset data incomplete. Please fill in all required fields.');
+      this.notificationService.showErrorNotification('Failed to add asset');
+    }
+  }
+
+  closeForm() {
+    this.activeModal.dismiss('Close button clicked');
+  }
 }
-

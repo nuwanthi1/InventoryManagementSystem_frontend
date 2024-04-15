@@ -6,58 +6,77 @@
                 <img class="card-img-top mb-5 mb-md-0" src="../../../../assets/Signup.jpg">
             </div>
             <div class="col-md-6 md-5 ">
-                <div class="container">
+              <div class="signup-container" >
                   <div class="text">
                 <h2>Registration Form</h2>
-                <p> <b>Already a member?</b>  <a routerLink="/login">Login</a></p>
+                <p> <b>Already a member?</b>  <a routerLink="/signin">Login</a></p>
             </div>
                <div>
-                    
-                   <form #registration='ngForm' (ngSubmit) ="submit(signup)" autocomplete="off">
-                    <div class="form-group">
-                      <label for ="username">Username:</label><br>
-                      <input type="text" name="username" class="form-control" ngModel>
+                <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)" autocomplete="off">
+                  <div class="form-group">
+                    <label for="username">Username:</label><br>
+                    <input #username="ngModel" required minlength="3" type="text" id="username" name="username" class="form-control" ngModel (input)="clearUsernameError()">
+                    <div *ngIf="username.touched && username.invalid" class="form-error alert alert-danger" role="alert">
+                      <p *ngIf="username.errors?.['required']">Username is required!</p>
+                      <p *ngIf="username.errors?.['minlength']">Username should have a minimum of 3 characters.</p>
                     </div>
-                     <div class="form-group">
-                        <label for ="firstname">First name:</label><br>
-                          <input #name="ngModel" required minlength="3"  type="text" name="firstname" class="form-control" pattern="[A-Za-z]{1,32}" ngModel>
-                           <div *ngIf="name.touched && name.invalid" class="error" > 
-                             <p *ngIf="name.errors?.['required']">First name Required!!</p>
-                             <p *ngIf="name.errors?.['minlength']">Sorry! First name should have minimum 3 characters </p>
-                             <p *ngIf="name.errors?.['pattern']">Please match the requested format</p>
-                           </div>
-                     </div>
-                    <div class="form-group">
-                        <label for ="Lastname">Last name:</label><br>
-                          <input type="text" name="Lastname" class="form-control" ngModel>
+                    <div *ngIf="usernameError" class="form-error alert alert-danger" role="alert">
+                      {{ usernameError }}
                     </div>
-                     <div class="form-group">
-                         <label for ="email">Email address:</label><br>
-                          <input #email="ngModel" required type="email" name="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ngModel>
-                             <div *ngIf="email.touched && email.invalid" class="error"> 
-                               <p *ngIf="email.errors?.['required']">Email Required!!</p>
-                               <p *ngIf="email.errors?.['pattern']">Email name doesn't match the format</p>
-                            </div>
-                     </div>
-                    <div class="form-group">
-                          <label for ="Phoneno">Phone number:</label><br>
-                          <input #Phoneno="ngModel"type="tel" name="Phoneno" class="form-control" placeholder="123-8965412" pattern="[0-9]{3}-[0-9]{7}" ngModel>
-                             <div *ngIf="Phoneno.invalid" class="error"> 
-                              <p *ngIf="Phoneno.errors?.['pattern']">Phone number doesn't match the format</p>
-                            </div>
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="firstName">First name:</label><br>
+                    <input type="text" name="firstName" id="firstName" class="form-control" ngModel> 
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="lastName">Last name:</label><br>
+                    <input type="text" name="lastName" id="lastName" class="form-control" ngModel>
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="email">Email address:</label><br>
+                    <input #email="ngModel" required type="email" name="email" id="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ngModel (input)="clearEmailError()">
+                    <div *ngIf="email.touched && email.invalid" class="form-error alert alert-danger" role="alert"> 
+                      <p *ngIf="email.errors?.['required']">Email is required!</p>
+                      <p *ngIf="email.errors?.['pattern']">Email format is invalid.</p>
                     </div>
-                    
-                    <div class="form-group">
-                          <label for ="password">Password:</label><br>
-                          <input #password="ngModel" required  minlength="5"type="password" name="password" class="form-control" ngModel>
-                             <div *ngIf="password.touched && password.invalid" class="error"> 
-                             <p *ngIf="password.errors?.['required']">password Required!!</p>
-                             <p *ngIf="password.errors?.['minlength']">Sorry! Password should contain atleast 5 characters.</p>
-                            </div>
+                    <div *ngIf="emailError" class="form-error alert alert-danger" role="alert">
+                      {{ emailError }}
                     </div>
-                    <pre></pre>
-                  <button class="btn"  [disabled]="!signup.valid" type="submit"> Sign Up</button>
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="telephoneNumber">Phone number:</label><br>
+                    <input #telephoneNumber="ngModel" type="tel" name="telephoneNumber" id="telephoneNumber" class="form-control" placeholder="123-8965412" pattern="[0-9]{3}-[0-9]{7}" ngModel>
+                    <div *ngIf="telephoneNumber.invalid" class="form-error alert alert-danger" role="alert"> 
+                      <p *ngIf="telephoneNumber.errors?.['pattern']">Phone number format is invalid.</p>
+                    </div>
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="password">Password:</label><br>
+                    <input #password="ngModel" required minlength="5" type="password" name="password" id="password" class="form-control" ngModel>
+                    <div *ngIf="password.touched && password.invalid" class="form-error alert alert-danger" role="alert"> 
+                      <p *ngIf="password.errors?.['required']">Password is required!</p>
+                      <p *ngIf="password.errors?.['minlength']">Password should be at least 5 characters long.</p>
+                    </div>
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="confirmPassword">Confirm Password:</label><br>
+                    <input #confirmPassword="ngModel" required minlength="5" type="password" name="confirmPassword" id="confirmPassword" class="form-control" ngModel>
+                    <div *ngIf="confirmPassword.touched && confirmPassword.invalid" class="form-error alert alert-danger" role="alert"> 
+                      <p *ngIf="confirmPassword.errors?.['required']">Confirm Password is required!</p>
+                      <p *ngIf="confirmPassword.errors?.['minlength']">Confirm Password should be at least 5 characters long.</p>
+                      <p *ngIf="signupForm.value.password !== signupForm.value.confirmPassword">Passwords do not match.</p>
+                    </div>
+                  </div>
+                  
+                  <button class="btn btn-submit btn-block" [disabled]="!signupForm.valid" type="submit">Submit</button>
                 </form>
+                
             </div>
          </div>
        </div>

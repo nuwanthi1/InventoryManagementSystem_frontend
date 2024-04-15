@@ -1,4 +1,4 @@
-div{
+   div{
     text-align: left;
 }
 label{
@@ -12,19 +12,25 @@ label{
     line-height: 60px;
 }
 .form-control.ng-touched.ng-invalid{
-    border: 2px solid red;
+    border: 2px solid rgb(145, 11, 11);
 }
-.error{
-    color: #f44336;
-}
+.alert-danger {
+    padding: 5px 15px; 
+    margin-bottom: 10px; 
+    border-radius: 5px; 
+  }
+  
 
-.btn {
+.btn-submit {
     color: #29ab87;
     background-color: rgba(41, 171, 135, 0.2);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
+    margin-top: 30px;
+    border-radius: 5px;
 }
 
-.Lastname-input{
-    margin-top: 10px;
+.signup-container{
+    padding-bottom: 80px;
 }
+  

@@ -9,9 +9,8 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { SharedModule } from '../shared/shared.module';
 import { Form, FormsModule } from '@angular/forms';
-//import { AddAssetComponent } from '../dialog/add-asset/add-asset.component';
-
-
+import { RouterModule } from '@angular/router';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 @NgModule({
@@ -22,15 +21,17 @@ import { Form, FormsModule } from '@angular/forms';
     ManageAssetsComponent,
     ManageUsersComponent,
     AdminProfileComponent,
-    //AddAssetComponent,
-
-      
+    
   ],
+  
   imports: [
     CommonModule,
     AdminRoutingModule,
     SharedModule,
     FormsModule,
+    RouterModule,
+    NgxChartsModule,
+    
   ]
 })
 export class AdminModule { }

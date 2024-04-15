@@ -1,6 +1,5 @@
-
 import { Component, EventEmitter, Output } from '@angular/core';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-delete-asset',
@@ -8,13 +7,11 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./delete-asset.component.css']
 })
 export class DeleteAssetComponent {
-  @Output() confirmDelete = new EventEmitter<void>();
-  @Output() cancelDelete = new EventEmitter<void>();
+  @Output() confirmDelete = new EventEmitter<string>(); 
 
-  constructor(public activeModal: NgbActiveModal, private modalService: NgbModal) { }
+  assetId: string = ''; 
 
-  ngOnInit(): void {
-  }
+  constructor(public activeModal: NgbActiveModal) { }
 
   closeModal() {
     this.activeModal.dismiss('Cross button clicked');
@@ -23,11 +20,11 @@ export class DeleteAssetComponent {
   handleNoButtonClick() {
     this.activeModal.dismiss('No button clicked');
   }
-  
-  
 
-  confirm() {
-    this.confirmDelete.emit();
+  confirm(): void {
+    console.log('Confirming deletion...',this.assetId);
+    this.confirmDelete.emit(this.assetId); 
+    this.activeModal.close();
   }
 
   cancelForm() {

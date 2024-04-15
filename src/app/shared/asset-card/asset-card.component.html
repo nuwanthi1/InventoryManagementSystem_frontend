@@ -1,0 +1,16 @@
+<div class="col-md-3 mb-4 mt-5">
+  <div class="card" [ngClass]="{
+      'asset-card': true,
+      'mobile': assetType === 'Mobile',
+      'computer': assetType === 'Computer',
+      'laptop': assetType === 'Laptop'
+    }">
+    <div class="card-header">
+      {{ assetName }} 
+    </div>
+    <div class="card-body">
+      <p class="card-text">ID: {{ assetId }}</p> 
+      <p class="card-text">Type: {{ assetType }}</p> 
+    </div>
+  </div>
+</div>

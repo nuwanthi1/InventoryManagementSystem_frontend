@@ -1,9 +1,9 @@
 <div class="col-md-3">
     <div class="side-menu">
-        <button class="navbar-toggler" type="button" (click)="toggleMenu()">
+        <button class="navbar-toggler d-md-none" type="button" (click)="toggleMenu()">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="menu-options collapse" [ngClass]="{ 'show': isMenuOpen}">
+        <div class="menu-options d-md-block" [class.show]="isMenuOpen">
             <a routerLink="">Home</a>
             <a routerLink="/admin/dashboard">Dashboard</a>
             <a routerLink="/admin/manage-assets"> Manage Assets</a>
