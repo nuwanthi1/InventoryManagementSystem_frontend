@@ -3,31 +3,30 @@
   
   <div class="form-group">
     <label for="assetId">Asset ID:</label>
-    <input #assetIdInput="ngModel" required [(ngModel)]="asset.assetId" name="assetId" id="assetId" class="form-control">
-    <div *ngIf="assetIdInput.touched && !asset.assetId" class="alert alert-danger">Asset ID is required.</div>
+    <input [(ngModel)]="asset.assetId" name="assetId" id="assetId" class="form-control" disabled>
   </div>
   
   <div class="form-group">
     <label for="assetName">Asset Name:</label>
-    <input #assetNameInput="ngModel" required [(ngModel)]="asset.assetName" name="assetName" id="assetName" class="form-control">
-    <div *ngIf="assetNameInput.touched && !asset.assetName" class="alert alert-danger">Asset Name is required.</div>
+    <input [(ngModel)]="asset.assetName" name="assetName" id="assetName" class="form-control">
+  </div>
     
- </div>
-  
   <div class="form-group">
     <label for="assetType">Asset Type:</label>
-    <input #assetTypeInput="ngModel" required [(ngModel)]="asset.assetType" name="assetType" id="assetType" class="form-control">
-    <div *ngIf="assetTypeInput.touched && !asset.assetType" class="alert alert-danger">Asset Type is required.</div>
-   </div>
-  
-  <div class="form-group">
-    <label for="assignedTo">Assigned To:</label>
-    <input type="text" class="form-control" id="assignedTo" name="assignedTo" [(ngModel)]="asset.assignedTo" >
+    <input [(ngModel)]="asset.assetType" name="assetType" id="assetType" class="form-control">
   </div>
-      <div class="button-group">
-        <button type="submit" class="btn btn-update">Update</button>
-        <button type="submit" class="btn btn-cancel" (click)="onCancel()">Cancel </button>
-      </div>
-    </form>
-    
   
+   
+<div class="form-group">
+  <label for="assignedTo">Assigned To:</label>
+  <select class="form-control" id="assignedTo" name="assignedTo" [(ngModel)]="asset.assignedTo">
+      <option value="" selected>No one</option>
+      <option *ngFor="let username of availableUsernames" [value]="username">{{ username }}</option>
+  </select>
+</div>
+
+  <div class="button-group">
+    <button type="submit" class="btn btn-update">Update</button>
+    <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
+  </div>
+</form>

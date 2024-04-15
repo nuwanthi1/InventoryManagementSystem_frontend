@@ -24,7 +24,6 @@ export class AddAssetDialogService {
   
   closeAddAssetDialog() {
     console.log('Closing Add Asset Dialog');
-    //this.modalService.dismissAll();
   }
 
   addAsset(assetData: any): Observable<any> {
